@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 
-// GOERLI contract address 0x9d49c64Ea953244B94C0E9240454BC662dAE86a2
+// GOERLI contract address 0xaf3003938b3f9C9B963a3E16262309E67238C312
 
 contract NFTMarketPlace is ERC721URIStorage {
     using Counters for Counters.Counter;
@@ -47,7 +47,7 @@ contract NFTMarketPlace is ERC721URIStorage {
         owner = payable(msg.sender);
     }
 
-    function getListPrice() public returns (uint256) {
+    function getListPrice() public view returns (uint256) {
         return listPrice;
     }
 
@@ -55,16 +55,16 @@ contract NFTMarketPlace is ERC721URIStorage {
         listPrice = _listPrice;
     }
 
-    function getLatestListedToken() public returns (ListedToken memory) {
+    function getLatestListedToken() public view returns (ListedToken memory) {
         uint256 currentId = _tokenIds.current();
         return idToListedToken[currentId];
     }
 
-    function getListedTokenById(uint256 id) public returns (ListedToken memory) {
+    function getListedTokenById(uint256 id) public view returns (ListedToken memory) {
         return idToListedToken[id];
     }
 
-    function getCurrentTokenId() public returns (uint256) {
+    function getCurrentTokenId() public view returns (uint256) {
         return _tokenIds.current();
     }
 
@@ -105,7 +105,7 @@ contract NFTMarketPlace is ERC721URIStorage {
         emit ListedSuccess(tokenId, address(this), msg.sender, price, true);
     }
 
-    function getAllNFTs() public returns (ListedToken[] memory) {
+    function getAllNFTs() public view returns (ListedToken[] memory) {
         uint nftCount = _tokenIds.current();
         ListedToken[] memory nfts = new ListedToken[](nftCount);
         for(uint i = 0; i < nftCount; i++) {
@@ -115,7 +115,7 @@ contract NFTMarketPlace is ERC721URIStorage {
         return nfts;
     }
 
-    function getMyNFTs() public returns (ListedToken[] memory) {
+    function getMyNFTs() public view returns (ListedToken[] memory) {
         uint nftCount = _tokenIds.current();
 
         // count nft owned by sender
