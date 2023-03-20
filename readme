@@ -1,0 +1,5 @@
+# deploy contract
+
+- to GOERLI: hardhat run ./scripts/NFTMarketPlace.js --network goerli
+
+- to GANACHE (localhost): hardhat run ./scripts/NFTMarketPlace.js --network ganache
